@@ -1,0 +1,22 @@
+﻿<local:AllShowViewBase x:Class="MVVMFirma.Views.showItemsView.ShowPacjenci"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMFirma.Views.showItemsView"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <DataGrid Background="White" AutoGenerateColumns="False"  ItemsSource="{Binding List}">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Id pacjenta" Binding="{Binding PacjentID}"/>
+                <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia, StringFormat=d}"/>
+                <DataGridTextColumn Header="Pesel" Binding="{Binding Pesel}"/>
+                <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</local:AllShowViewBase>

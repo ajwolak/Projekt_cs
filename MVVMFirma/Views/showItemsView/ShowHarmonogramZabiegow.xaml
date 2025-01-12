@@ -1,0 +1,23 @@
+﻿<local:AllShowViewBase x:Class="MVVMFirma.Views.showItemsView.ShowHarmonogramZabiegow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMFirma.Views.showItemsView"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <DataGrid Background="White" AutoGenerateColumns="False"  ItemsSource="{Binding List}">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Id harmonogramu" Binding="{Binding HarmonogramId}"/>
+                <DataGridTextColumn Header="Imię pacjenta" Binding="{Binding pacjentImie}"/>
+                <DataGridTextColumn Header="Nazwisko pacjenta" Binding="{Binding pacjentNazwisko}"/>
+                <DataGridTextColumn Header="Imię lekarza" Binding="{Binding lekarzImie}"/>
+                <DataGridTextColumn Header="Nazwisko Lekarza" Binding="{Binding lekarzNazwisko}"/>
+                <DataGridTextColumn Header="Nazwa zabiegu" Binding="{Binding nazwaZabiegu}"/>
+                <DataGridTextColumn Header="Opis zabiegu" Binding="{Binding opisZabiegu}"/>
+                <DataGridTextColumn Header="Data zabiegu" Binding="{Binding dataZabiegu, StringFormat=d}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</local:AllShowViewBase>

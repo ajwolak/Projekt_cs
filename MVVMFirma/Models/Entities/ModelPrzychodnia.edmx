@@ -1,0 +1,1026 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="przychodniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Choroby">
+          <Key>
+            <PropertyRef Name="ChorobaID" />
+          </Key>
+          <Property Name="ChorobaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" />
+          <Property Name="Opis" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="GrafikLekarzy">
+          <Key>
+            <PropertyRef Name="GrafikID" />
+          </Key>
+          <Property Name="GrafikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LekarzID" Type="int" />
+          <Property Name="DataPoczatku" Type="datetime" />
+          <Property Name="DataKonca" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HarmonogramZabiegow">
+          <Key>
+            <PropertyRef Name="HarmonogramID" />
+          </Key>
+          <Property Name="HarmonogramID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ZabiegID" Type="int" />
+          <Property Name="PacjentID" Type="int" />
+          <Property Name="LekarzID" Type="int" />
+          <Property Name="DataZabiegu" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HistoriaChorob">
+          <Key>
+            <PropertyRef Name="HistoriaID" />
+          </Key>
+          <Property Name="HistoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PacjentID" Type="int" />
+          <Property Name="ChorobaID" Type="int" />
+          <Property Name="DataDiagnozy" Type="date" />
+          <Property Name="DataWyleczenia" Type="date" />
+        </EntityType>
+        <EntityType Name="Lekarze">
+          <Key>
+            <PropertyRef Name="LekarzID" />
+          </Key>
+          <Property Name="LekarzID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="50" />
+          <Property Name="SpecjalizacjaID" Type="int" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Leki">
+          <Key>
+            <PropertyRef Name="LekID" />
+          </Key>
+          <Property Name="LekID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" />
+          <Property Name="Opis" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Pacjenci">
+          <Key>
+            <PropertyRef Name="PacjentID" />
+          </Key>
+          <Property Name="PacjentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataUrodzenia" Type="date" />
+          <Property Name="Pesel" Type="char" MaxLength="11" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Platnosci">
+          <Key>
+            <PropertyRef Name="PlatnoscID" />
+          </Key>
+          <Property Name="PlatnoscID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WizytaID" Type="int" />
+          <Property Name="Kwota" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="DataPlatnosci" Type="datetime" />
+          <Property Name="MetodaPlatnosci" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pokoje">
+          <Key>
+            <PropertyRef Name="PokojID" />
+          </Key>
+          <Property Name="PokojID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumerPokoju" Type="nvarchar" MaxLength="10" />
+          <Property Name="Typ" Type="nvarchar" MaxLength="50" />
+          <Property Name="Opis" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Recepcjonisci">
+          <Key>
+            <PropertyRef Name="RecepcjonistaID" />
+          </Key>
+          <Property Name="RecepcjonistaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Recepty">
+          <Key>
+            <PropertyRef Name="ReceptaID" />
+          </Key>
+          <Property Name="ReceptaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PacjentID" Type="int" />
+          <Property Name="LekarzID" Type="int" />
+          <Property Name="DataWystawienia" Type="date" />
+        </EntityType>
+        <EntityType Name="Specjalizacje">
+          <Key>
+            <PropertyRef Name="SpecjalizacjaID" />
+          </Key>
+          <Property Name="SpecjalizacjaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="SzczegolyRecept">
+          <Key>
+            <PropertyRef Name="SzczegolyID" />
+          </Key>
+          <Property Name="SzczegolyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReceptaID" Type="int" />
+          <Property Name="LekID" Type="int" />
+          <Property Name="Ilosc" Type="int" />
+        </EntityType>
+        <EntityType Name="Wizyty">
+          <Key>
+            <PropertyRef Name="WizytaID" />
+          </Key>
+          <Property Name="WizytaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PacjentID" Type="int" />
+          <Property Name="LekarzID" Type="int" />
+          <Property Name="DataWizyty" Type="datetime" />
+          <Property Name="Notatka" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Zabiegi">
+          <Key>
+            <PropertyRef Name="ZabiegID" />
+          </Key>
+          <Property Name="ZabiegID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" />
+          <Property Name="Opis" Type="nvarchar(max)" />
+          <Property Name="Cena" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <Association Name="FK__GrafikLek__Lekar__5DCAEF64">
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="0..1" />
+          <End Role="GrafikLekarzy" Type="Self.GrafikLekarzy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarze">
+              <PropertyRef Name="LekarzID" />
+            </Principal>
+            <Dependent Role="GrafikLekarzy">
+              <PropertyRef Name="LekarzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Harmonogr__Lekar__75A278F5">
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="0..1" />
+          <End Role="HarmonogramZabiegow" Type="Self.HarmonogramZabiegow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarze">
+              <PropertyRef Name="LekarzID" />
+            </Principal>
+            <Dependent Role="HarmonogramZabiegow">
+              <PropertyRef Name="LekarzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Harmonogr__Pacje__74AE54BC">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="0..1" />
+          <End Role="HarmonogramZabiegow" Type="Self.HarmonogramZabiegow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="PacjentID" />
+            </Principal>
+            <Dependent Role="HarmonogramZabiegow">
+              <PropertyRef Name="PacjentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Harmonogr__Zabie__73BA3083">
+          <End Role="Zabiegi" Type="Self.Zabiegi" Multiplicity="0..1" />
+          <End Role="HarmonogramZabiegow" Type="Self.HarmonogramZabiegow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zabiegi">
+              <PropertyRef Name="ZabiegID" />
+            </Principal>
+            <Dependent Role="HarmonogramZabiegow">
+              <PropertyRef Name="ZabiegID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HistoriaC__Choro__6D0D32F4">
+          <End Role="Choroby" Type="Self.Choroby" Multiplicity="0..1" />
+          <End Role="HistoriaChorob" Type="Self.HistoriaChorob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Choroby">
+              <PropertyRef Name="ChorobaID" />
+            </Principal>
+            <Dependent Role="HistoriaChorob">
+              <PropertyRef Name="ChorobaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HistoriaC__Pacje__6C190EBB">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="0..1" />
+          <End Role="HistoriaChorob" Type="Self.HistoriaChorob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="PacjentID" />
+            </Principal>
+            <Dependent Role="HistoriaChorob">
+              <PropertyRef Name="PacjentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Lekarze__Specjal__52593CB8">
+          <End Role="Specjalizacje" Type="Self.Specjalizacje" Multiplicity="0..1" />
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specjalizacje">
+              <PropertyRef Name="SpecjalizacjaID" />
+            </Principal>
+            <Dependent Role="Lekarze">
+              <PropertyRef Name="SpecjalizacjaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Platnosci__Wizyt__59063A47">
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="0..1" />
+          <End Role="Platnosci" Type="Self.Platnosci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wizyty">
+              <PropertyRef Name="WizytaID" />
+            </Principal>
+            <Dependent Role="Platnosci">
+              <PropertyRef Name="WizytaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recepty__LekarzI__6383C8BA">
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="0..1" />
+          <End Role="Recepty" Type="Self.Recepty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarze">
+              <PropertyRef Name="LekarzID" />
+            </Principal>
+            <Dependent Role="Recepty">
+              <PropertyRef Name="LekarzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recepty__Pacjent__628FA481">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="0..1" />
+          <End Role="Recepty" Type="Self.Recepty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="PacjentID" />
+            </Principal>
+            <Dependent Role="Recepty">
+              <PropertyRef Name="PacjentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Szczegoly__LekID__6754599E">
+          <End Role="Leki" Type="Self.Leki" Multiplicity="0..1" />
+          <End Role="SzczegolyRecept" Type="Self.SzczegolyRecept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leki">
+              <PropertyRef Name="LekID" />
+            </Principal>
+            <Dependent Role="SzczegolyRecept">
+              <PropertyRef Name="LekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Szczegoly__Recep__66603565">
+          <End Role="Recepty" Type="Self.Recepty" Multiplicity="0..1" />
+          <End Role="SzczegolyRecept" Type="Self.SzczegolyRecept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recepty">
+              <PropertyRef Name="ReceptaID" />
+            </Principal>
+            <Dependent Role="SzczegolyRecept">
+              <PropertyRef Name="ReceptaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Wizyty__LekarzID__5629CD9C">
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="0..1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarze">
+              <PropertyRef Name="LekarzID" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="LekarzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Wizyty__PacjentI__5535A963">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="0..1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="PacjentID" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="PacjentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="przychodniaModelStoreContainer">
+          <EntitySet Name="Choroby" EntityType="Self.Choroby" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrafikLekarzy" EntityType="Self.GrafikLekarzy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HarmonogramZabiegow" EntityType="Self.HarmonogramZabiegow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoriaChorob" EntityType="Self.HistoriaChorob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lekarze" EntityType="Self.Lekarze" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leki" EntityType="Self.Leki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacjenci" EntityType="Self.Pacjenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Platnosci" EntityType="Self.Platnosci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pokoje" EntityType="Self.Pokoje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recepcjonisci" EntityType="Self.Recepcjonisci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recepty" EntityType="Self.Recepty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specjalizacje" EntityType="Self.Specjalizacje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SzczegolyRecept" EntityType="Self.SzczegolyRecept" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wizyty" EntityType="Self.Wizyty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zabiegi" EntityType="Self.Zabiegi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__GrafikLek__Lekar__5DCAEF64" Association="Self.FK__GrafikLek__Lekar__5DCAEF64">
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="GrafikLekarzy" EntitySet="GrafikLekarzy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Harmonogr__Lekar__75A278F5" Association="Self.FK__Harmonogr__Lekar__75A278F5">
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="HarmonogramZabiegow" EntitySet="HarmonogramZabiegow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Harmonogr__Pacje__74AE54BC" Association="Self.FK__Harmonogr__Pacje__74AE54BC">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="HarmonogramZabiegow" EntitySet="HarmonogramZabiegow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Harmonogr__Zabie__73BA3083" Association="Self.FK__Harmonogr__Zabie__73BA3083">
+            <End Role="Zabiegi" EntitySet="Zabiegi" />
+            <End Role="HarmonogramZabiegow" EntitySet="HarmonogramZabiegow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HistoriaC__Choro__6D0D32F4" Association="Self.FK__HistoriaC__Choro__6D0D32F4">
+            <End Role="Choroby" EntitySet="Choroby" />
+            <End Role="HistoriaChorob" EntitySet="HistoriaChorob" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HistoriaC__Pacje__6C190EBB" Association="Self.FK__HistoriaC__Pacje__6C190EBB">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="HistoriaChorob" EntitySet="HistoriaChorob" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Lekarze__Specjal__52593CB8" Association="Self.FK__Lekarze__Specjal__52593CB8">
+            <End Role="Specjalizacje" EntitySet="Specjalizacje" />
+            <End Role="Lekarze" EntitySet="Lekarze" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Platnosci__Wizyt__59063A47" Association="Self.FK__Platnosci__Wizyt__59063A47">
+            <End Role="Wizyty" EntitySet="Wizyty" />
+            <End Role="Platnosci" EntitySet="Platnosci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recepty__LekarzI__6383C8BA" Association="Self.FK__Recepty__LekarzI__6383C8BA">
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="Recepty" EntitySet="Recepty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recepty__Pacjent__628FA481" Association="Self.FK__Recepty__Pacjent__628FA481">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="Recepty" EntitySet="Recepty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Szczegoly__LekID__6754599E" Association="Self.FK__Szczegoly__LekID__6754599E">
+            <End Role="Leki" EntitySet="Leki" />
+            <End Role="SzczegolyRecept" EntitySet="SzczegolyRecept" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Szczegoly__Recep__66603565" Association="Self.FK__Szczegoly__Recep__66603565">
+            <End Role="Recepty" EntitySet="Recepty" />
+            <End Role="SzczegolyRecept" EntitySet="SzczegolyRecept" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Wizyty__LekarzID__5629CD9C" Association="Self.FK__Wizyty__LekarzID__5629CD9C">
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Wizyty__PacjentI__5535A963" Association="Self.FK__Wizyty__PacjentI__5535A963">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="przychodniaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Choroby">
+          <Key>
+            <PropertyRef Name="ChorobaID" />
+          </Key>
+          <Property Name="ChorobaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HistoriaChorob" Relationship="Self.FK__HistoriaC__Choro__6D0D32F4" FromRole="Choroby" ToRole="HistoriaChorob" />
+        </EntityType>
+        <EntityType Name="GrafikLekarzy">
+          <Key>
+            <PropertyRef Name="GrafikID" />
+          </Key>
+          <Property Name="GrafikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LekarzID" Type="Int32" />
+          <Property Name="DataPoczatku" Type="DateTime" Precision="3" />
+          <Property Name="DataKonca" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Lekarze" Relationship="Self.FK__GrafikLek__Lekar__5DCAEF64" FromRole="GrafikLekarzy" ToRole="Lekarze" />
+        </EntityType>
+        <EntityType Name="HarmonogramZabiegow">
+          <Key>
+            <PropertyRef Name="HarmonogramID" />
+          </Key>
+          <Property Name="HarmonogramID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZabiegID" Type="Int32" />
+          <Property Name="PacjentID" Type="Int32" />
+          <Property Name="LekarzID" Type="Int32" />
+          <Property Name="DataZabiegu" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Lekarze" Relationship="Self.FK__Harmonogr__Lekar__75A278F5" FromRole="HarmonogramZabiegow" ToRole="Lekarze" />
+          <NavigationProperty Name="Pacjenci" Relationship="Self.FK__Harmonogr__Pacje__74AE54BC" FromRole="HarmonogramZabiegow" ToRole="Pacjenci" />
+          <NavigationProperty Name="Zabiegi" Relationship="Self.FK__Harmonogr__Zabie__73BA3083" FromRole="HarmonogramZabiegow" ToRole="Zabiegi" />
+        </EntityType>
+        <EntityType Name="HistoriaChorob">
+          <Key>
+            <PropertyRef Name="HistoriaID" />
+          </Key>
+          <Property Name="HistoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PacjentID" Type="Int32" />
+          <Property Name="ChorobaID" Type="Int32" />
+          <Property Name="DataDiagnozy" Type="DateTime" Precision="0" />
+          <Property Name="DataWyleczenia" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Choroby" Relationship="Self.FK__HistoriaC__Choro__6D0D32F4" FromRole="HistoriaChorob" ToRole="Choroby" />
+          <NavigationProperty Name="Pacjenci" Relationship="Self.FK__HistoriaC__Pacje__6C190EBB" FromRole="HistoriaChorob" ToRole="Pacjenci" />
+        </EntityType>
+        <EntityType Name="Lekarze">
+          <Key>
+            <PropertyRef Name="LekarzID" />
+          </Key>
+          <Property Name="LekarzID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SpecjalizacjaID" Type="Int32" />
+          <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GrafikLekarzy" Relationship="Self.FK__GrafikLek__Lekar__5DCAEF64" FromRole="Lekarze" ToRole="GrafikLekarzy" />
+          <NavigationProperty Name="HarmonogramZabiegow" Relationship="Self.FK__Harmonogr__Lekar__75A278F5" FromRole="Lekarze" ToRole="HarmonogramZabiegow" />
+          <NavigationProperty Name="Specjalizacje" Relationship="Self.FK__Lekarze__Specjal__52593CB8" FromRole="Lekarze" ToRole="Specjalizacje" />
+          <NavigationProperty Name="Recepty" Relationship="Self.FK__Recepty__LekarzI__6383C8BA" FromRole="Lekarze" ToRole="Recepty" />
+          <NavigationProperty Name="Wizyty" Relationship="Self.FK__Wizyty__LekarzID__5629CD9C" FromRole="Lekarze" ToRole="Wizyty" />
+        </EntityType>
+        <EntityType Name="Leki">
+          <Key>
+            <PropertyRef Name="LekID" />
+          </Key>
+          <Property Name="LekID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SzczegolyRecept" Relationship="Self.FK__Szczegoly__LekID__6754599E" FromRole="Leki" ToRole="SzczegolyRecept" />
+        </EntityType>
+        <EntityType Name="Pacjenci">
+          <Key>
+            <PropertyRef Name="PacjentID" />
+          </Key>
+          <Property Name="PacjentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataUrodzenia" Type="DateTime" Precision="0" Nullable="true" />
+          <Property Name="Pesel" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HarmonogramZabiegow" Relationship="Self.FK__Harmonogr__Pacje__74AE54BC" FromRole="Pacjenci" ToRole="HarmonogramZabiegow" />
+          <NavigationProperty Name="HistoriaChorob" Relationship="Self.FK__HistoriaC__Pacje__6C190EBB" FromRole="Pacjenci" ToRole="HistoriaChorob" />
+          <NavigationProperty Name="Recepty" Relationship="Self.FK__Recepty__Pacjent__628FA481" FromRole="Pacjenci" ToRole="Recepty" />
+          <NavigationProperty Name="Wizyty" Relationship="Self.FK__Wizyty__PacjentI__5535A963" FromRole="Pacjenci" ToRole="Wizyty" />
+        </EntityType>
+        <EntityType Name="Platnosci">
+          <Key>
+            <PropertyRef Name="PlatnoscID" />
+          </Key>
+          <Property Name="PlatnoscID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WizytaID" Type="Int32" />
+          <Property Name="Kwota" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="DataPlatnosci" Type="DateTime" Precision="3" />
+          <Property Name="MetodaPlatnosci" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Wizyty" Relationship="Self.FK__Platnosci__Wizyt__59063A47" FromRole="Platnosci" ToRole="Wizyty" />
+        </EntityType>
+        <EntityType Name="Pokoje">
+          <Key>
+            <PropertyRef Name="PokojID" />
+          </Key>
+          <Property Name="PokojID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumerPokoju" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Typ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Recepcjonisci">
+          <Key>
+            <PropertyRef Name="RecepcjonistaID" />
+          </Key>
+          <Property Name="RecepcjonistaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Recepty">
+          <Key>
+            <PropertyRef Name="ReceptaID" />
+          </Key>
+          <Property Name="ReceptaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PacjentID" Type="Int32" />
+          <Property Name="LekarzID" Type="Int32" />
+          <Property Name="DataWystawienia" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Lekarze" Relationship="Self.FK__Recepty__LekarzI__6383C8BA" FromRole="Recepty" ToRole="Lekarze" />
+          <NavigationProperty Name="Pacjenci" Relationship="Self.FK__Recepty__Pacjent__628FA481" FromRole="Recepty" ToRole="Pacjenci" />
+          <NavigationProperty Name="SzczegolyRecept" Relationship="Self.FK__Szczegoly__Recep__66603565" FromRole="Recepty" ToRole="SzczegolyRecept" />
+        </EntityType>
+        <EntityType Name="Specjalizacje">
+          <Key>
+            <PropertyRef Name="SpecjalizacjaID" />
+          </Key>
+          <Property Name="SpecjalizacjaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lekarze" Relationship="Self.FK__Lekarze__Specjal__52593CB8" FromRole="Specjalizacje" ToRole="Lekarze" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SzczegolyRecept">
+          <Key>
+            <PropertyRef Name="SzczegolyID" />
+          </Key>
+          <Property Name="SzczegolyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReceptaID" Type="Int32" />
+          <Property Name="LekID" Type="Int32" />
+          <Property Name="Ilosc" Type="Int32" />
+          <NavigationProperty Name="Leki" Relationship="Self.FK__Szczegoly__LekID__6754599E" FromRole="SzczegolyRecept" ToRole="Leki" />
+          <NavigationProperty Name="Recepty" Relationship="Self.FK__Szczegoly__Recep__66603565" FromRole="SzczegolyRecept" ToRole="Recepty" />
+        </EntityType>
+        <EntityType Name="Wizyty">
+          <Key>
+            <PropertyRef Name="WizytaID" />
+          </Key>
+          <Property Name="WizytaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PacjentID" Type="Int32" />
+          <Property Name="LekarzID" Type="Int32" />
+          <Property Name="DataWizyty" Type="DateTime" Precision="3" />
+          <Property Name="Notatka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lekarze" Relationship="Self.FK__Wizyty__LekarzID__5629CD9C" FromRole="Wizyty" ToRole="Lekarze" />
+          <NavigationProperty Name="Pacjenci" Relationship="Self.FK__Wizyty__PacjentI__5535A963" FromRole="Wizyty" ToRole="Pacjenci" />
+          <NavigationProperty Name="Platnosci" Relationship="Self.FK__Platnosci__Wizyt__59063A47" FromRole="Wizyty" ToRole="Platnosci" />
+        </EntityType>
+        <EntityType Name="Zabiegi">
+          <Key>
+            <PropertyRef Name="ZabiegID" />
+          </Key>
+          <Property Name="ZabiegID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cena" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="HarmonogramZabiegow" Relationship="Self.FK__Harmonogr__Zabie__73BA3083" FromRole="Zabiegi" ToRole="HarmonogramZabiegow" />
+        </EntityType>
+        <Association Name="FK__HistoriaC__Choro__6D0D32F4">
+          <End Role="Choroby" Type="Self.Choroby" Multiplicity="0..1" />
+          <End Role="HistoriaChorob" Type="Self.HistoriaChorob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Choroby">
+              <PropertyRef Name="ChorobaID" />
+            </Principal>
+            <Dependent Role="HistoriaChorob">
+              <PropertyRef Name="ChorobaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GrafikLek__Lekar__5DCAEF64">
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="0..1" />
+          <End Role="GrafikLekarzy" Type="Self.GrafikLekarzy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarze">
+              <PropertyRef Name="LekarzID" />
+            </Principal>
+            <Dependent Role="GrafikLekarzy">
+              <PropertyRef Name="LekarzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Harmonogr__Lekar__75A278F5">
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="0..1" />
+          <End Role="HarmonogramZabiegow" Type="Self.HarmonogramZabiegow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarze">
+              <PropertyRef Name="LekarzID" />
+            </Principal>
+            <Dependent Role="HarmonogramZabiegow">
+              <PropertyRef Name="LekarzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Harmonogr__Pacje__74AE54BC">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="0..1" />
+          <End Role="HarmonogramZabiegow" Type="Self.HarmonogramZabiegow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="PacjentID" />
+            </Principal>
+            <Dependent Role="HarmonogramZabiegow">
+              <PropertyRef Name="PacjentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Harmonogr__Zabie__73BA3083">
+          <End Role="Zabiegi" Type="Self.Zabiegi" Multiplicity="0..1" />
+          <End Role="HarmonogramZabiegow" Type="Self.HarmonogramZabiegow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zabiegi">
+              <PropertyRef Name="ZabiegID" />
+            </Principal>
+            <Dependent Role="HarmonogramZabiegow">
+              <PropertyRef Name="ZabiegID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HistoriaC__Pacje__6C190EBB">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="0..1" />
+          <End Role="HistoriaChorob" Type="Self.HistoriaChorob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="PacjentID" />
+            </Principal>
+            <Dependent Role="HistoriaChorob">
+              <PropertyRef Name="PacjentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Lekarze__Specjal__52593CB8">
+          <End Role="Specjalizacje" Type="Self.Specjalizacje" Multiplicity="0..1" />
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specjalizacje">
+              <PropertyRef Name="SpecjalizacjaID" />
+            </Principal>
+            <Dependent Role="Lekarze">
+              <PropertyRef Name="SpecjalizacjaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recepty__LekarzI__6383C8BA">
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="0..1" />
+          <End Role="Recepty" Type="Self.Recepty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarze">
+              <PropertyRef Name="LekarzID" />
+            </Principal>
+            <Dependent Role="Recepty">
+              <PropertyRef Name="LekarzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Wizyty__LekarzID__5629CD9C">
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="0..1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarze">
+              <PropertyRef Name="LekarzID" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="LekarzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Szczegoly__LekID__6754599E">
+          <End Role="Leki" Type="Self.Leki" Multiplicity="0..1" />
+          <End Role="SzczegolyRecept" Type="Self.SzczegolyRecept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leki">
+              <PropertyRef Name="LekID" />
+            </Principal>
+            <Dependent Role="SzczegolyRecept">
+              <PropertyRef Name="LekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recepty__Pacjent__628FA481">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="0..1" />
+          <End Role="Recepty" Type="Self.Recepty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="PacjentID" />
+            </Principal>
+            <Dependent Role="Recepty">
+              <PropertyRef Name="PacjentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Wizyty__PacjentI__5535A963">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="0..1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="PacjentID" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="PacjentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Platnosci__Wizyt__59063A47">
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="0..1" />
+          <End Role="Platnosci" Type="Self.Platnosci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wizyty">
+              <PropertyRef Name="WizytaID" />
+            </Principal>
+            <Dependent Role="Platnosci">
+              <PropertyRef Name="WizytaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Szczegoly__Recep__66603565">
+          <End Role="Recepty" Type="Self.Recepty" Multiplicity="0..1" />
+          <End Role="SzczegolyRecept" Type="Self.SzczegolyRecept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recepty">
+              <PropertyRef Name="ReceptaID" />
+            </Principal>
+            <Dependent Role="SzczegolyRecept">
+              <PropertyRef Name="ReceptaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="przychodniaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Choroby" EntityType="Self.Choroby" />
+          <EntitySet Name="GrafikLekarzy" EntityType="Self.GrafikLekarzy" />
+          <EntitySet Name="HarmonogramZabiegow" EntityType="Self.HarmonogramZabiegow" />
+          <EntitySet Name="HistoriaChorob" EntityType="Self.HistoriaChorob" />
+          <EntitySet Name="Lekarze" EntityType="Self.Lekarze" />
+          <EntitySet Name="Leki" EntityType="Self.Leki" />
+          <EntitySet Name="Pacjenci" EntityType="Self.Pacjenci" />
+          <EntitySet Name="Platnosci" EntityType="Self.Platnosci" />
+          <EntitySet Name="Pokoje" EntityType="Self.Pokoje" />
+          <EntitySet Name="Recepcjonisci" EntityType="Self.Recepcjonisci" />
+          <EntitySet Name="Recepty" EntityType="Self.Recepty" />
+          <EntitySet Name="Specjalizacje" EntityType="Self.Specjalizacje" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="SzczegolyRecept" EntityType="Self.SzczegolyRecept" />
+          <EntitySet Name="Wizyty" EntityType="Self.Wizyty" />
+          <EntitySet Name="Zabiegi" EntityType="Self.Zabiegi" />
+          <AssociationSet Name="FK__HistoriaC__Choro__6D0D32F4" Association="Self.FK__HistoriaC__Choro__6D0D32F4">
+            <End Role="Choroby" EntitySet="Choroby" />
+            <End Role="HistoriaChorob" EntitySet="HistoriaChorob" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GrafikLek__Lekar__5DCAEF64" Association="Self.FK__GrafikLek__Lekar__5DCAEF64">
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="GrafikLekarzy" EntitySet="GrafikLekarzy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Harmonogr__Lekar__75A278F5" Association="Self.FK__Harmonogr__Lekar__75A278F5">
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="HarmonogramZabiegow" EntitySet="HarmonogramZabiegow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Harmonogr__Pacje__74AE54BC" Association="Self.FK__Harmonogr__Pacje__74AE54BC">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="HarmonogramZabiegow" EntitySet="HarmonogramZabiegow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Harmonogr__Zabie__73BA3083" Association="Self.FK__Harmonogr__Zabie__73BA3083">
+            <End Role="Zabiegi" EntitySet="Zabiegi" />
+            <End Role="HarmonogramZabiegow" EntitySet="HarmonogramZabiegow" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HistoriaC__Pacje__6C190EBB" Association="Self.FK__HistoriaC__Pacje__6C190EBB">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="HistoriaChorob" EntitySet="HistoriaChorob" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Lekarze__Specjal__52593CB8" Association="Self.FK__Lekarze__Specjal__52593CB8">
+            <End Role="Specjalizacje" EntitySet="Specjalizacje" />
+            <End Role="Lekarze" EntitySet="Lekarze" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recepty__LekarzI__6383C8BA" Association="Self.FK__Recepty__LekarzI__6383C8BA">
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="Recepty" EntitySet="Recepty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Wizyty__LekarzID__5629CD9C" Association="Self.FK__Wizyty__LekarzID__5629CD9C">
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Szczegoly__LekID__6754599E" Association="Self.FK__Szczegoly__LekID__6754599E">
+            <End Role="Leki" EntitySet="Leki" />
+            <End Role="SzczegolyRecept" EntitySet="SzczegolyRecept" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recepty__Pacjent__628FA481" Association="Self.FK__Recepty__Pacjent__628FA481">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="Recepty" EntitySet="Recepty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Wizyty__PacjentI__5535A963" Association="Self.FK__Wizyty__PacjentI__5535A963">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Platnosci__Wizyt__59063A47" Association="Self.FK__Platnosci__Wizyt__59063A47">
+            <End Role="Wizyty" EntitySet="Wizyty" />
+            <End Role="Platnosci" EntitySet="Platnosci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Szczegoly__Recep__66603565" Association="Self.FK__Szczegoly__Recep__66603565">
+            <End Role="Recepty" EntitySet="Recepty" />
+            <End Role="SzczegolyRecept" EntitySet="SzczegolyRecept" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="przychodniaModelStoreContainer" CdmEntityContainer="przychodniaEntities">
+          <EntitySetMapping Name="Choroby">
+            <EntityTypeMapping TypeName="przychodniaModel.Choroby">
+              <MappingFragment StoreEntitySet="Choroby">
+                <ScalarProperty Name="ChorobaID" ColumnName="ChorobaID" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrafikLekarzy">
+            <EntityTypeMapping TypeName="przychodniaModel.GrafikLekarzy">
+              <MappingFragment StoreEntitySet="GrafikLekarzy">
+                <ScalarProperty Name="GrafikID" ColumnName="GrafikID" />
+                <ScalarProperty Name="LekarzID" ColumnName="LekarzID" />
+                <ScalarProperty Name="DataPoczatku" ColumnName="DataPoczatku" />
+                <ScalarProperty Name="DataKonca" ColumnName="DataKonca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HarmonogramZabiegow">
+            <EntityTypeMapping TypeName="przychodniaModel.HarmonogramZabiegow">
+              <MappingFragment StoreEntitySet="HarmonogramZabiegow">
+                <ScalarProperty Name="HarmonogramID" ColumnName="HarmonogramID" />
+                <ScalarProperty Name="ZabiegID" ColumnName="ZabiegID" />
+                <ScalarProperty Name="PacjentID" ColumnName="PacjentID" />
+                <ScalarProperty Name="LekarzID" ColumnName="LekarzID" />
+                <ScalarProperty Name="DataZabiegu" ColumnName="DataZabiegu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoriaChorob">
+            <EntityTypeMapping TypeName="przychodniaModel.HistoriaChorob">
+              <MappingFragment StoreEntitySet="HistoriaChorob">
+                <ScalarProperty Name="HistoriaID" ColumnName="HistoriaID" />
+                <ScalarProperty Name="PacjentID" ColumnName="PacjentID" />
+                <ScalarProperty Name="ChorobaID" ColumnName="ChorobaID" />
+                <ScalarProperty Name="DataDiagnozy" ColumnName="DataDiagnozy" />
+                <ScalarProperty Name="DataWyleczenia" ColumnName="DataWyleczenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lekarze">
+            <EntityTypeMapping TypeName="przychodniaModel.Lekarze">
+              <MappingFragment StoreEntitySet="Lekarze">
+                <ScalarProperty Name="LekarzID" ColumnName="LekarzID" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="SpecjalizacjaID" ColumnName="SpecjalizacjaID" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leki">
+            <EntityTypeMapping TypeName="przychodniaModel.Leki">
+              <MappingFragment StoreEntitySet="Leki">
+                <ScalarProperty Name="LekID" ColumnName="LekID" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacjenci">
+            <EntityTypeMapping TypeName="przychodniaModel.Pacjenci">
+              <MappingFragment StoreEntitySet="Pacjenci">
+                <ScalarProperty Name="PacjentID" ColumnName="PacjentID" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="DataUrodzenia" ColumnName="DataUrodzenia" />
+                <ScalarProperty Name="Pesel" ColumnName="Pesel" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Platnosci">
+            <EntityTypeMapping TypeName="przychodniaModel.Platnosci">
+              <MappingFragment StoreEntitySet="Platnosci">
+                <ScalarProperty Name="PlatnoscID" ColumnName="PlatnoscID" />
+                <ScalarProperty Name="WizytaID" ColumnName="WizytaID" />
+                <ScalarProperty Name="Kwota" ColumnName="Kwota" />
+                <ScalarProperty Name="DataPlatnosci" ColumnName="DataPlatnosci" />
+                <ScalarProperty Name="MetodaPlatnosci" ColumnName="MetodaPlatnosci" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pokoje">
+            <EntityTypeMapping TypeName="przychodniaModel.Pokoje">
+              <MappingFragment StoreEntitySet="Pokoje">
+                <ScalarProperty Name="PokojID" ColumnName="PokojID" />
+                <ScalarProperty Name="NumerPokoju" ColumnName="NumerPokoju" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recepcjonisci">
+            <EntityTypeMapping TypeName="przychodniaModel.Recepcjonisci">
+              <MappingFragment StoreEntitySet="Recepcjonisci">
+                <ScalarProperty Name="RecepcjonistaID" ColumnName="RecepcjonistaID" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recepty">
+            <EntityTypeMapping TypeName="przychodniaModel.Recepty">
+              <MappingFragment StoreEntitySet="Recepty">
+                <ScalarProperty Name="ReceptaID" ColumnName="ReceptaID" />
+                <ScalarProperty Name="PacjentID" ColumnName="PacjentID" />
+                <ScalarProperty Name="LekarzID" ColumnName="LekarzID" />
+                <ScalarProperty Name="DataWystawienia" ColumnName="DataWystawienia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specjalizacje">
+            <EntityTypeMapping TypeName="przychodniaModel.Specjalizacje">
+              <MappingFragment StoreEntitySet="Specjalizacje">
+                <ScalarProperty Name="SpecjalizacjaID" ColumnName="SpecjalizacjaID" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="przychodniaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SzczegolyRecept">
+            <EntityTypeMapping TypeName="przychodniaModel.SzczegolyRecept">
+              <MappingFragment StoreEntitySet="SzczegolyRecept">
+                <ScalarProperty Name="SzczegolyID" ColumnName="SzczegolyID" />
+                <ScalarProperty Name="ReceptaID" ColumnName="ReceptaID" />
+                <ScalarProperty Name="LekID" ColumnName="LekID" />
+                <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wizyty">
+            <EntityTypeMapping TypeName="przychodniaModel.Wizyty">
+              <MappingFragment StoreEntitySet="Wizyty">
+                <ScalarProperty Name="WizytaID" ColumnName="WizytaID" />
+                <ScalarProperty Name="PacjentID" ColumnName="PacjentID" />
+                <ScalarProperty Name="LekarzID" ColumnName="LekarzID" />
+                <ScalarProperty Name="DataWizyty" ColumnName="DataWizyty" />
+                <ScalarProperty Name="Notatka" ColumnName="Notatka" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zabiegi">
+            <EntityTypeMapping TypeName="przychodniaModel.Zabiegi">
+              <MappingFragment StoreEntitySet="Zabiegi">
+                <ScalarProperty Name="ZabiegID" ColumnName="ZabiegID" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
