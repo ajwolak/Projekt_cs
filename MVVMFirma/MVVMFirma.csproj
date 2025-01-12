@@ -189,8 +189,11 @@
     </Compile>
     <Compile Include="Helper\BaseCommand.cs" />
     <Compile Include="Models\businessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\businessLogic\LekarzeBusiness.cs" />
+    <Compile Include="Models\businessLogic\LekarzeZysk.cs" />
     <Compile Include="Models\businessLogic\LekBusiness.cs" />
     <Compile Include="Models\businessLogic\LekIlosc.cs" />
+    <Compile Include="Models\businessLogic\NajlepszyLekarz.cs" />
     <Compile Include="Models\EntitiesForView\businessLogic\KeyAndValue.cs" />
     <Compile Include="Models\EntitiesForView\showItems\GrafikLekarzaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\showItems\HarmonogramZabieguForAllView.cs" />
@@ -265,6 +268,8 @@
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\businessLogic\RaportLekowViewModel.cs" />
+    <Compile Include="ViewModels\businessLogic\RaportNajlepszyLekarzViewModel.cs" />
+    <Compile Include="ViewModels\businessLogic\RaportZyskZWizytModelView.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\addNewItem\NowaChoroba.cs" />
@@ -303,6 +308,12 @@
     <Compile Include="Views\addNewItemView\OneViewBase.cs" />
     <Compile Include="Views\businessLogic\RaportLekowView.xaml.cs">
       <DependentUpon>RaportLekowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\businessLogic\RaportNajlepszyLekarz.xaml.cs">
+      <DependentUpon>RaportNajlepszyLekarz.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\businessLogic\RaportZyskZWizyt.xaml.cs">
+      <DependentUpon>RaportZyskZWizyt.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -438,6 +449,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\businessLogic\RaportLekowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\businessLogic\RaportNajlepszyLekarz.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\businessLogic\RaportZyskZWizyt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

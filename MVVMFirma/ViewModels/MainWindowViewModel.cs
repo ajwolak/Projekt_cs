@@ -37,7 +37,9 @@ namespace MVVMFirma.ViewModels.addNewItem
         {
             return new List<CommandViewModel>
             {
-                  new CommandViewModel("Raport leków",                 new BaseCommand(() => this.CreateView( new RaportLekowViewModel() ))),
+                  new CommandViewModel("Raport leki",                 new BaseCommand(() => this.CreateView( new RaportLekowViewModel() ))),
+                  new CommandViewModel("Raport lekarze",                 new BaseCommand(() => this.CreateView( new RaportZyskZWizytModelView() ))),
+                  new CommandViewModel("Najlepszy Lekarz",                 new BaseCommand(() => this.CreateView( new RaportNajlepszyLekarzViewModel() ))),
 
                   //***************************//
                   //***************************//

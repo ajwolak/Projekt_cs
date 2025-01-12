@@ -12,6 +12,12 @@
     <DataTemplate DataType="{x:Type vblvm:RaportLekowViewModel}" >
         <vblv:RaportLekowView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vblvm:RaportZyskZWizytModelView}" >
+        <vblv:RaportZyskZWizyt />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vblvm:RaportNajlepszyLekarzViewModel}" >
+        <vblv:RaportNajlepszyLekarz />
+    </DataTemplate>
     <!--Logika biznesowa-->    
     <!--Dodawanie do bazy-->    
     <DataTemplate DataType="{x:Type vm:NowaChoroba}">
