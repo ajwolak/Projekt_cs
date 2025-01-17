@@ -5,7 +5,7 @@
                     xmlns:vww="clr-namespace:MVVMFirma.Views.showItemsView"
                     xmlns:vmm="clr-namespace:MVVMFirma.ViewModels.showItems"
                     xmlns:vblvm="clr-namespace:MVVMFirma.ViewModels.businessLogic"
-                    xmlns:vblv="clr-namespace:MVVMFirma.Views.businessLogic"                    
+                    xmlns:vblv="clr-namespace:MVVMFirma.Views.businessLogic" 
                     >
     
     <!--Logika biznesowa-->

@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Helper;
 using MVVMFirma.Models.businessLogic;
 using MVVMFirma.Models.businessLogic.dodawanieZKluczem;
 using MVVMFirma.Models.Entities;
 using MVVMFirma.Models.EntitiesForView.businessLogic;
+using MVVMFirma.Models.EntitiesForView.showItems;
 
 namespace MVVMFirma.ViewModels.addNewItem
 {
@@ -16,6 +20,7 @@ namespace MVVMFirma.ViewModels.addNewItem
         : base("Dodaj szczegół recepty")
         {
             Item = new SzczegolyRecept();
+            Messenger.Default.Register<ReceptyForAllView>(this, getWybranaRecepta);
         }
 
         public int? ReceptaID
@@ -26,6 +31,11 @@ namespace MVVMFirma.ViewModels.addNewItem
                 Item.ReceptaID = value;
                 OnPropertyChanged(() => ReceptaID);
             }
+        }
+
+        public String ReceptaDane
+        {
+            get; set;
         }
 
         public int? LekID
@@ -68,6 +78,30 @@ namespace MVVMFirma.ViewModels.addNewItem
         {
             przychodniaEntities.SzczegolyRecept.Add(Item);//dodanie do lokalnej kolekcji
             przychodniaEntities.SaveChanges();//zapisanie zmian do bazy 
+        }
+
+        private BaseCommand _showReceptaCommand;
+        public ICommand ShowReceptaCommand //komenda do przycisku dodaj
+        {
+            get
+            {
+                if (_showReceptaCommand == null)
+                {
+                    _showReceptaCommand = new BaseCommand(() => pokazRecepty());
+                }
+                return _showReceptaCommand;
+            }
+        }
+
+        private void pokazRecepty()
+        {
+            Messenger.Default.Send<String>("PokazListeZReceptami");
+        }
+
+        private void getWybranaRecepta(ReceptyForAllView recepta)
+        {
+            ReceptaID = recepta.receptaId;
+            ReceptaDane = recepta.pacjentData;
         }
     }
 }

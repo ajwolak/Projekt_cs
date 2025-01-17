@@ -4,13 +4,16 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Models.Entities;
 using MVVMFirma.Models.EntitiesForView.showItems;
 
 namespace MVVMFirma.ViewModels.showItems
 {
     public class ShowWizyty : PobierzZBazyViewModel<WizytyForAllView>
     {
-        public ShowWizyty() : base("Lista wizyt", "wizyty") { }
+        private bool closeTab;
+        public ShowWizyty(bool closeTab = false) : base("Lista wizyt", "wizyty") { this.closeTab = closeTab; }
 
         public override void Load()
         {
@@ -19,13 +22,28 @@ namespace MVVMFirma.ViewModels.showItems
                 select new WizytyForAllView
                 {
                     wizytaId = wizyta.WizytaID,
-                    pacjentData = wizyta.Pacjenci.Imie + " "+ wizyta.Pacjenci.Nazwisko,
+                    pacjentData = wizyta.Pacjenci.Imie + " " + wizyta.Pacjenci.Nazwisko,
                     lekarzData = wizyta.Lekarze.Imie + " " + wizyta.Lekarze.Nazwisko,
                     dataWizyty = wizyta.DataWizyty,
                     notatka = wizyta.Notatka,
                     status = wizyta.Status,
                 }
                 );
+        }
+
+        private WizytyForAllView _wybranaWizyta;
+        public WizytyForAllView wybranaWizyta
+        {
+            get { return _wybranaWizyta; }
+            set
+            {
+                _wybranaWizyta = value;
+                Messenger.Default.Send(_wybranaWizyta);
+                if (closeTab)
+                {
+                    OnRequestClose();
+                }
+            }
         }
     }
 }

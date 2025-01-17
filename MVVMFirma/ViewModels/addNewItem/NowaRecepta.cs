@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Helper;
+using System.Windows.Input;
 using MVVMFirma.Models.businessLogic;
 using MVVMFirma.Models.businessLogic.dodawanieZKluczem;
 using MVVMFirma.Models.Entities;
@@ -16,6 +19,7 @@ namespace MVVMFirma.ViewModels.addNewItem
         :base("Dodaj receptę")
         {
             Item = new Recepty();
+            Messenger.Default.Register<Pacjenci>(this, getWybranyPacjent);
         }
 
         public int? PacjentID
@@ -26,6 +30,11 @@ namespace MVVMFirma.ViewModels.addNewItem
                 Item.PacjentID = value;
                 OnPropertyChanged(() => PacjentID);
             }
+        }
+
+        public String PacjentDane
+        {
+            get; set;
         }
 
         public int? LekarzID
@@ -68,6 +77,30 @@ namespace MVVMFirma.ViewModels.addNewItem
         {
             przychodniaEntities.Recepty.Add(Item);//dodanie do lokalnej kolekcji
             przychodniaEntities.SaveChanges();//zapisanie zmian do bazy 
+        }
+
+        private BaseCommand _showPacjenciCommand;
+        public ICommand ShowPacjenciCommand //komenda do przycisku dodaj
+        {
+            get
+            {
+                if (_showPacjenciCommand == null)
+                {
+                    _showPacjenciCommand = new BaseCommand(() => pokazPacjentow());
+                }
+                return _showPacjenciCommand;
+            }
+        }
+
+        private void pokazPacjentow()
+        {
+            Messenger.Default.Send<String>("PokazListeZPacjentami");
+        }
+
+        private void getWybranyPacjent(Pacjenci pacjent)
+        {
+            PacjentID = pacjent.PacjentID;
+            PacjentDane = pacjent.Imie + " " + pacjent.Nazwisko;
         }
     }
 }

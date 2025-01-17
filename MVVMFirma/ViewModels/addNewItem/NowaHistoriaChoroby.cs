@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MVVMFirma.Helper;
+using System.Windows.Input;
 using MVVMFirma.Models.businessLogic;
 using MVVMFirma.Models.businessLogic.dodawanieZKluczem;
 using MVVMFirma.Models.Entities;
 using MVVMFirma.Models.EntitiesForView.businessLogic;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace MVVMFirma.ViewModels.addNewItem
 {
@@ -16,6 +19,8 @@ namespace MVVMFirma.ViewModels.addNewItem
             : base("Historia choroby")
         {
             Item = new HistoriaChorob();
+            //messenger oczekujący na pacjenta zwidoku z listą pacjentów
+            Messenger.Default.Register<Pacjenci>(this, getWybranyPacjent);
         }
 
         public int? PacjentID
@@ -26,6 +31,11 @@ namespace MVVMFirma.ViewModels.addNewItem
                 Item.PacjentID = value;
                 OnPropertyChanged(() => PacjentID);
             }
+        }
+
+        public String PacjentDane
+        {
+            get; set;
         }
 
         public int? ChorobaID
@@ -78,6 +88,30 @@ namespace MVVMFirma.ViewModels.addNewItem
         {
             przychodniaEntities.HistoriaChorob.Add(Item);//dodanie do lokalnej kolekcji
             przychodniaEntities.SaveChanges();//zapisanie zmian do bazy 
+        }
+
+        private BaseCommand _showPacjenciCommand;
+        public ICommand ShowPacjenciCommand //komenda do przycisku dodaj
+        {
+            get
+            {
+                if (_showPacjenciCommand == null)
+                {
+                    _showPacjenciCommand = new BaseCommand(() => pokazPacjentow());
+                }
+                return _showPacjenciCommand;
+            }
+        }
+
+        private void pokazPacjentow()
+        {
+            Messenger.Default.Send<String>("PokazListeZPacjentami");
+        }
+
+        private void getWybranyPacjent(Pacjenci pacjent)
+        {
+            PacjentID = pacjent.PacjentID;
+            PacjentDane = pacjent.Imie + " " + pacjent.Nazwisko;
         }
     }
 }

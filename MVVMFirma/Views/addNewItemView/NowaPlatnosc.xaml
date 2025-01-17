@@ -10,6 +10,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions >
             <RowDefinition Height="50" />
@@ -18,8 +19,9 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Content="Wizyta" Margin="0,8,0,8"></Label>
-        <ComboBox  Grid.Row="0" Grid.Column="1" Margin="0,8,0,8"  ItemsSource="{Binding ComboboxWizyty}" DisplayMemberPath="value" SelectedValuePath="key" SelectedValue="{Binding Path=WizytaID, Mode=TwoWay}"/>
-
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="0,8,0,8" IsEnabled="False" Text="{Binding WizytaDane}"  />
+        <Button Content="..."  Grid.Row="0" Grid.Column="2" Margin="0,8,0,8" Command="{Binding ShowWizytaDane}"/>
+        
         <Label Grid.Row="1" Grid.Column="0" Content="Kwota" Margin="0,8,0,8"></Label>
         <TextBox  Grid.Row="1" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Kwota, UpdateSourceTrigger=PropertyChanged}" />
 

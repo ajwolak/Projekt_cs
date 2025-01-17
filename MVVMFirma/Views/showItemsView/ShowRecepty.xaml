@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <DataGrid Background="White" AutoGenerateColumns="False"  ItemsSource="{Binding List}">
+        <DataGrid Background="White" AutoGenerateColumns="False"  ItemsSource="{Binding List}" SelectedItem="{Binding Path=wybranaRecepta, Mode=TwoWay}">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Id recepty" Binding="{Binding receptaId}"/>
                 <DataGridTextColumn Header="Imie i nazwisko pacjenta" Binding="{Binding pacjentData}"/>

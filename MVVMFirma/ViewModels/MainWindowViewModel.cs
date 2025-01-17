@@ -81,6 +81,10 @@ namespace MVVMFirma.ViewModels.addNewItem
                   new CommandViewModel("Lista z szczegółami recept",        new BaseCommand(()=>this.ShowWorkspace( new ShowSzczegolyRecepty() ))),
                   new CommandViewModel("Lista z wizytami",                  new BaseCommand(()=>this.ShowWorkspace( new ShowWizyty() ))),
                   new CommandViewModel("Lista z zabiegami",                 new BaseCommand(()=>this.ShowWorkspace( new ShowZabiegi() ))),
+
+                  //***************************//
+                  //***************************//
+
             };
         }
         #endregion
@@ -165,7 +169,7 @@ namespace MVVMFirma.ViewModels.addNewItem
                     break;
                 case "leki":
                     CreateView(new NowyLek());
-                    break;
+                    break;               
                 case "pacjenci":
                     CreateView(new NowyPacjent());
                     break;
@@ -192,7 +196,19 @@ namespace MVVMFirma.ViewModels.addNewItem
                     break;
                 case "zabiegi":
                     CreateView(new NowyZabieg());
-                    break;                
+                    break;
+                case "PokazListeZPacjentami":
+                    ShowWorkspace(new ShowPacjenci(true));
+                    break;
+                case "PokazListeZReceptami":
+                    ShowWorkspace(new ShowRecepty(true));
+                    break;     
+                case "PokazListeZWizytami":
+                    ShowWorkspace(new ShowWizyty(true));
+                    break;
+                case "PokazListeZZabiegami":
+                    ShowWorkspace(new ShowZabiegi (true));
+                    break;
             }
         }
 

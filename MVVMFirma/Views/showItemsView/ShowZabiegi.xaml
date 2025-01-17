@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <DataGrid Background="White" AutoGenerateColumns="False"  ItemsSource="{Binding List}">
+        <DataGrid Background="White" AutoGenerateColumns="False"  ItemsSource="{Binding List}" SelectedItem="{Binding Path=wybranyZabieg, Mode=TwoWay}">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Id zabiegu" Binding="{Binding ZabiegID}"/>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
