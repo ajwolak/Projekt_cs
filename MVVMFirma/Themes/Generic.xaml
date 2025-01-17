@@ -15,10 +15,10 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <ToolBar Grid.Row="0">
-                            <ToggleButton Content="Dodaj" Margin="0,2,0,2" />
+                            <ToggleButton Content="Dodaj" Margin="0,2,0,2" Command="{Binding AddCommand}" />
                             <ToggleButton Content="Edytuj" Margin="0,2,0,2" />
                             <ToggleButton Content="Kasuj" Margin="0,2,0,2" />
-                            <ToggleButton Content="Odswiez" Margin="0,2,0,2" />
+                            <ToggleButton Content="Odswiez" Margin="0,2,0,2" Command="{Binding LoadComand}" />
                         </ToolBar>
                         <StackPanel Grid.Row="1">
                             <Label>Tu bedzie sortowanie</Label>

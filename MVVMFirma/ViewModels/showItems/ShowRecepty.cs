@@ -10,7 +10,7 @@ namespace MVVMFirma.ViewModels.showItems
 {
     public class ShowRecepty : PobierzZBazyViewModel<ReceptyForAllView>
     {
-        public ShowRecepty() : base("Lista wystawionych recept") { }
+        public ShowRecepty() : base("Lista wystawionych recept", "recepty") { }
 
         public override void Load()
         {

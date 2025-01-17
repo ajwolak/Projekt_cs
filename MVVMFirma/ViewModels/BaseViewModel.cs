@@ -9,9 +9,8 @@ namespace MVVMFirma.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        #region DisplayName
         public virtual string DisplayName { get; protected set; }
-        #endregion
+        public virtual string shortcut {  get; protected set; }
         #region WindowPropertys
 
         public void ShowMessageBox(string message)

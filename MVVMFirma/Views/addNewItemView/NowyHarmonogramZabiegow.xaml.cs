@@ -18,7 +18,7 @@ namespace MVVMFirma.Views.addNewItemView
     /// <summary>
     /// Logika interakcji dla klasy NowyHarmonogramZabiegow.xaml
     /// </summary>
-    public partial class NowyHarmonogramZabiegow : UserControl
+    public partial class NowyHarmonogramZabiegow : OneViewBase
 {
     public NowyHarmonogramZabiegow()
     {

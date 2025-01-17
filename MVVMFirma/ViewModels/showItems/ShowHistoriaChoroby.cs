@@ -11,7 +11,7 @@ namespace MVVMFirma.ViewModels.showItems
 {
     public class ShowHistoriaChoroby : PobierzZBazyViewModel<HistoriaChorobyForAllView>
     {
-        public ShowHistoriaChoroby() : base("Historia wszystkich chorób")
+        public ShowHistoriaChoroby() : base("Historia wszystkich chorób", "historiaChorob")
         {
         }
 

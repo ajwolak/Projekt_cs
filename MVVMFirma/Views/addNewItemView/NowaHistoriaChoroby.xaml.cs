@@ -18,8 +18,8 @@ namespace MVVMFirma.Views.addNewItemView
     /// <summary>
     /// Logika interakcji dla klasy NowaHistoriaHoroby.xaml
     /// </summary>
-    public partial class NowaHistoriaChoroby : UserControl
-{
+    public partial class NowaHistoriaChoroby : OneViewBase
+    {
     public NowaHistoriaChoroby()
     {
         InitializeComponent();

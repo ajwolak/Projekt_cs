@@ -18,8 +18,8 @@ namespace MVVMFirma.Views.addNewItemView
     /// <summary>
     /// Logika interakcji dla klasy NowaPlatnosc.xaml
     /// </summary>
-    public partial class NowaPlatnosc : UserControl
-{
+    public partial class NowaPlatnosc : OneViewBase
+    {
     public NowaPlatnosc()
     {
         InitializeComponent();

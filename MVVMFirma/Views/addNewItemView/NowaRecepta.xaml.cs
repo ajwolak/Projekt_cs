@@ -18,7 +18,7 @@ namespace MVVMFirma.Views.addNewItemView
     /// <summary>
     /// Logika interakcji dla klasy NowaRecepta.xaml
     /// </summary>
-    public partial class NowaRecepta : UserControl
+    public partial class NowaRecepta : OneViewBase
 {
     public NowaRecepta()
     {

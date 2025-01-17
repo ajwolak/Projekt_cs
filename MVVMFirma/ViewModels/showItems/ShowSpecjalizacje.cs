@@ -10,7 +10,7 @@ namespace MVVMFirma.ViewModels.showItems
 {
     public class ShowSpecjalizacje : PobierzZBazyViewModel<Specjalizacje>
     {
-        public ShowSpecjalizacje():base("Lista specjalizacji") { }
+        public ShowSpecjalizacje():base("Lista specjalizacji", "specjalizacje") { }
 
         public override void Load()
         {

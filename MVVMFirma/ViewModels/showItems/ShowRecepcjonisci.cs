@@ -10,7 +10,7 @@ namespace MVVMFirma.ViewModels.showItems
 {
     public class ShowRecepcjonisci : PobierzZBazyViewModel<Recepcjonisci>
     {
-        public ShowRecepcjonisci():base("Lista recepcjonistów") { }
+        public ShowRecepcjonisci():base("Lista recepcjonistów", "recepcjonisci") { }
 
         public override void Load()
         {

@@ -13,7 +13,7 @@
             <RowDefinition Height="33"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Zysk z wizyt lekarzy" Margin="3" HorizontalAlignment="Center"></Label>
+        <Label Grid.Row="0" Content="Najlepszy lekarz" Margin="3" HorizontalAlignment="Center"></Label>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40"></ColumnDefinition>

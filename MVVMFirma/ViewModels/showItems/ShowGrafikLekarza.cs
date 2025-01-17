@@ -10,7 +10,7 @@ namespace MVVMFirma.ViewModels.showItems
 {
     public class ShowGrafikLekarza : PobierzZBazyViewModel<GrafikLekarzaForAllView>
     {
-        public ShowGrafikLekarza() : base("Grafiki lekarzy") { }
+        public ShowGrafikLekarza() : base("Grafiki lekarzy", "grafikLekarza") { }
 
         public override void Load()
         {

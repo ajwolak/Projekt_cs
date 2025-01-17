@@ -16,7 +16,7 @@ namespace MVVMFirma.ViewModels.showItems
         {
             List = new ObservableCollection<Choroby>(przychodniaEntities.Choroby.ToList());
         }
-        public ShowChoroby():base("Lista chorób") {
+        public ShowChoroby():base("Lista chorób", "choroby") {
         }
     }
 }

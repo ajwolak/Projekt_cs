@@ -10,7 +10,7 @@ namespace MVVMFirma.ViewModels.showItems
 {
     public class ShowPlatnosci : PobierzZBazyViewModel<PlatnosciForAllView>
     {
-        public ShowPlatnosci():base("Lista płatności w przychodni") { }
+        public ShowPlatnosci():base("Lista płatności w przychodni", "platnosci") { }
 
         public override void Load()
         {

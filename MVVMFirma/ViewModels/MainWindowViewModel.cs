@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Windows.Data;
 using MVVMFirma.ViewModels.showItems;
 using MVVMFirma.ViewModels.businessLogic;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace MVVMFirma.ViewModels.addNewItem
 {
@@ -35,11 +36,13 @@ namespace MVVMFirma.ViewModels.addNewItem
         }
         private List<CommandViewModel> CreateCommands()
         {
+            //messenger oczekujący na stringa i po złapaniu wukonuje metodę open
+            Messenger.Default.Register<string>(this, open);
             return new List<CommandViewModel>
             {
-                  new CommandViewModel("Raport leki",                 new BaseCommand(() => this.CreateView( new RaportLekowViewModel() ))),
-                  new CommandViewModel("Raport lekarze",                 new BaseCommand(() => this.CreateView( new RaportZyskZWizytModelView() ))),
-                  new CommandViewModel("Najlepszy Lekarz",                 new BaseCommand(() => this.CreateView( new RaportNajlepszyLekarzViewModel() ))),
+                  new CommandViewModel("Raport leki",                   new BaseCommand(() => this.CreateView( new RaportLekowViewModel() ))),
+                  new CommandViewModel("Raport lekarze",                new BaseCommand(() => this.CreateView( new RaportZyskZWizytModelView() ))),
+                  new CommandViewModel("Najlepszy Lekarz",              new BaseCommand(() => this.CreateView( new RaportNajlepszyLekarzViewModel() ))),
 
                   //***************************//
                   //***************************//
@@ -116,7 +119,7 @@ namespace MVVMFirma.ViewModels.addNewItem
 
         #region Private Helpers
         private void CreateView(WorkspaceViewModel nowy)
-        {            
+        {
             this.Workspaces.Add(nowy);
             this.SetActiveWorkspace(nowy);
         }
@@ -125,7 +128,7 @@ namespace MVVMFirma.ViewModels.addNewItem
             WorkspaceViewModel existingWorkspace = this.Workspaces.FirstOrDefault(vm => vm == workspace);
             if (existingWorkspace == null)
             {
-                this.Workspaces.Add(workspace); 
+                this.Workspaces.Add(workspace);
             }
             this.SetActiveWorkspace(workspace);
         }
@@ -138,6 +141,58 @@ namespace MVVMFirma.ViewModels.addNewItem
             if (collectionView != null)
             {
                 collectionView.MoveCurrentTo(workspace);
+            }
+        }
+
+        private void open(string shortcut) //shortcut to wysłany komunikat
+        {
+            switch (shortcut)
+            {
+                case "choroby":
+                    CreateView(new NowaChoroba());
+                    break;
+                case "grafikLekarza":
+                    CreateView(new NowyGrafikLekarza());
+                    break;
+                case "harmonogram":
+                    CreateView(new NowyHarmonogramZabiegow());
+                    break;
+                case "historiaChorob":
+                    CreateView(new NowaHistoriaChoroby());
+                    break;
+                case "lekarze":
+                    CreateView(new NowyLekarz());
+                    break;
+                case "leki":
+                    CreateView(new NowyLek());
+                    break;
+                case "pacjenci":
+                    CreateView(new NowyPacjent());
+                    break;
+                case "platnosci":
+                    CreateView(new NowaPlatnosc());
+                    break;
+                case "pokoje":
+                    CreateView(new NowyPokoj());
+                    break;
+                case "recepcjonisci":
+                    CreateView(new NowyRecepcjonista());
+                    break;
+                case "recepty":
+                    CreateView(new NowaRecepta());
+                    break;
+                case "specjalizacje":
+                    CreateView(new NowaSpecjalizacja());
+                    break;
+                case "szczegolyRecepty":
+                    CreateView(new NowaSzczegolaRecepty());
+                    break;
+                case "wizyty":
+                    CreateView(new NowaWizyta());
+                    break;
+                case "zabiegi":
+                    CreateView(new NowyZabieg());
+                    break;                
             }
         }
 

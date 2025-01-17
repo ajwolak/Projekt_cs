@@ -7,6 +7,7 @@ using MVVMFirma.Helper;
 using System.Windows.Input;
 using MVVMFirma.Models.Entities;
 using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace MVVMFirma.ViewModels
 {
@@ -43,12 +44,32 @@ namespace MVVMFirma.ViewModels
             }
         }
 
-        public PobierzZBazyViewModel(String name)
+        private BaseCommand _addCommand;
+        public ICommand AddCommand //komenda do przycisku dodaj
+        {
+            get
+            {
+                if (_addCommand == null)
+                {
+                    _addCommand = new BaseCommand(() => add());
+                }
+                return _addCommand;
+            }
+        }
+
+        public PobierzZBazyViewModel(String name, String shortcut = "")
         {
             base.DisplayName = name;
+            base.shortcut = shortcut;
             przychodniaEntities = new przychodniaEntities();
         }
 
         public abstract void Load();
+
+        private void add()
+        {
+            //komenda z biblioteki mvvm light -dzięki niemu wysyłamy do innych obiektów komunikat DisplayNameAdd - gdzie DisplayName to nazwa okna
+            Messenger.Default.Send(shortcut);
+        }
     }
 }

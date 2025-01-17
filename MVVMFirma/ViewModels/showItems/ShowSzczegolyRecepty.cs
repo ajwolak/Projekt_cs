@@ -10,7 +10,7 @@ namespace MVVMFirma.ViewModels.showItems
 {
     public class ShowSzczegolyRecepty : PobierzZBazyViewModel<SzczegolyReceptyForAllView>
     {
-        public ShowSzczegolyRecepty():base("Szczegóły recept") { }
+        public ShowSzczegolyRecepty():base("Szczegóły recept", "szczegolyRecepty") { }
 
         public override void Load()
         {

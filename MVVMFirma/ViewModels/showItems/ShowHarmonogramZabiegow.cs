@@ -10,7 +10,7 @@ namespace MVVMFirma.ViewModels.showItems
 {
     public class ShowHarmonogramZabiegow : PobierzZBazyViewModel<HarmonogramZabieguForAllView>
     {
-        public ShowHarmonogramZabiegow():base("Lista zabiegów") {}
+        public ShowHarmonogramZabiegow():base("Lista zabiegów", "harmonogram") {}
 
         public override void Load()
         {
