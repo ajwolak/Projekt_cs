@@ -7,7 +7,7 @@
                     xmlns:vblvm="clr-namespace:MVVMFirma.ViewModels.businessLogic"
                     xmlns:vblv="clr-namespace:MVVMFirma.Views.businessLogic" 
                     >
-    
+
     <!--Logika biznesowa-->
     <DataTemplate DataType="{x:Type vblvm:RaportLekowViewModel}" >
         <vblv:RaportLekowView />
@@ -18,8 +18,8 @@
     <DataTemplate DataType="{x:Type vblvm:RaportNajlepszyLekarzViewModel}" >
         <vblv:RaportNajlepszyLekarz />
     </DataTemplate>
-    <!--Logika biznesowa-->    
-    <!--Dodawanie do bazy-->    
+    <!--Logika biznesowa-->
+    <!--Dodawanie do bazy-->
     <DataTemplate DataType="{x:Type vm:NowaChoroba}">
         <vw:NowaChoroba/>
     </DataTemplate>
@@ -87,7 +87,7 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type vmm:ShowPacjenci}">
         <vww:ShowPacjenci/>
-    </DataTemplate>    
+    </DataTemplate>
     <DataTemplate DataType="{x:Type vmm:ShowPlatnosci}">
         <vww:ShowPlatnosci/>
     </DataTemplate>

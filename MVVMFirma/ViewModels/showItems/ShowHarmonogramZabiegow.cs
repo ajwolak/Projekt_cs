@@ -10,7 +10,7 @@ namespace MVVMFirma.ViewModels.showItems
 {
     public class ShowHarmonogramZabiegow : PobierzZBazyViewModel<HarmonogramZabieguForAllView>
     {
-        public ShowHarmonogramZabiegow():base("Lista zabiegów", "harmonogram") {}
+        public ShowHarmonogramZabiegow() : base("Lista zabiegów", "harmonogram") { }
 
         public override void Load()
         {
@@ -28,6 +28,30 @@ namespace MVVMFirma.ViewModels.showItems
                     opisZabiegu = harmonogram.Zabiegi.Opis,
                 }
                 );
+        }
+
+        public override List<string> GetComboboxSortList()
+        {
+            return new List<string> { "Data" };
+        }
+        public override List<string> GetComboboxFindList()
+        {
+            return new List<string> { "Pacjent", "Lekarz", "Nazwa" };
+        }
+
+        public override void Sort()
+        {
+            List = new ObservableCollection<HarmonogramZabieguForAllView>(List.OrderBy(item=>item.dataZabiegu));
+        }
+
+        public override void Find()
+        {
+            if (FindField == "Pacjent")
+                List = new ObservableCollection<HarmonogramZabieguForAllView>(List.Where(item => item.pacjentImie.StartsWith(FindTextBox) || item.pacjentNazwisko.StartsWith(FindTextBox)));
+            if(FindField == "Lekarz")
+                List = new ObservableCollection<HarmonogramZabieguForAllView>(List.Where(item => item.lekarzImie.StartsWith(FindTextBox) || item.lekarzNazwisko.StartsWith(FindTextBox)));
+            if(FindField == "Nazwa")
+                List = new ObservableCollection<HarmonogramZabieguForAllView>(List.Where(item => item.nazwaZabiegu.StartsWith(FindTextBox)));
         }
     }
 }

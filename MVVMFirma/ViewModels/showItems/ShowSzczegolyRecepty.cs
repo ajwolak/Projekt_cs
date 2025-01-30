@@ -10,7 +10,7 @@ namespace MVVMFirma.ViewModels.showItems
 {
     public class ShowSzczegolyRecepty : PobierzZBazyViewModel<SzczegolyReceptyForAllView>
     {
-        public ShowSzczegolyRecepty():base("Szczegóły recept", "szczegolyRecepty") { }
+        public ShowSzczegolyRecepty() : base("Szczegóły recept", "szczegolyRecepty") { }
 
         public override void Load()
         {
@@ -26,6 +26,31 @@ namespace MVVMFirma.ViewModels.showItems
                     ilosc = (int)szczegoly.Ilosc,
                 }
                 );
+        }
+
+        public override List<string> GetComboboxSortList()
+        {
+            return new List<string> { "Data", "Ilość" };
+        }
+        public override List<string> GetComboboxFindList()
+        {
+            return new List<string> { "Pacjent", "Lekarz" };
+        }
+
+        public override void Sort()
+        {
+            if (SortField == "Data")
+                List = new ObservableCollection<SzczegolyReceptyForAllView>(List.OrderBy(item => item.dataWystawienia));
+            if (SortField == "Ilość")
+                List = new ObservableCollection<SzczegolyReceptyForAllView>(List.OrderBy(item => item.ilosc));
+        }
+
+        public override void Find()
+        {
+            if (FindField == "Pacjent")
+                List = new ObservableCollection<SzczegolyReceptyForAllView>(List.Where(item => item.pacjentData.StartsWith(FindTextBox)));
+            if (FindField == "Lekarz")
+                List = new ObservableCollection<SzczegolyReceptyForAllView>(List.Where(item => item.lekarzData.StartsWith(FindTextBox)));
         }
     }
 }

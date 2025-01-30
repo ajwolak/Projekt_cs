@@ -16,5 +16,24 @@ namespace MVVMFirma.ViewModels.showItems
         {
             List = new ObservableCollection<Specjalizacje>(przychodniaEntities.Specjalizacje.ToList());
         }
+
+        public override List<string> GetComboboxSortList()
+        {
+            return new List<string> {  "Nazwa" };
+        }
+        public override List<string> GetComboboxFindList()
+        {
+            return new List<string> { "Nazwa" };
+        }
+
+        public override void Sort()
+        {
+            List = new ObservableCollection<Specjalizacje>(List.OrderBy(item => item.Nazwa));
+        }
+
+        public override void Find()
+        {
+            List = new ObservableCollection<Specjalizacje>(List.Where(item => item.Nazwa.StartsWith(FindTextBox)));
+        }
     }
 }

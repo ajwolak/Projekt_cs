@@ -46,5 +46,27 @@ namespace MVVMFirma.ViewModels.showItems
                     }
                 );
         }
+
+        public override List<string> GetComboboxSortList()
+        {
+            return new List<string> { "Data" };
+        }
+        public override List<string> GetComboboxFindList()
+        {
+            return new List<string> { "Pacjent", "Lekarz" };
+        }
+
+        public override void Sort()
+        {
+            List = new ObservableCollection<ReceptyForAllView>(List.OrderBy(item => item.dataWystawienia));
+        }
+
+        public override void Find()
+        {
+            if (FindField == "Pacjent")
+                List = new ObservableCollection<ReceptyForAllView>(List.Where(item => item.pacjentData.StartsWith(FindTextBox) ));
+            if (FindField == "Lekarz")
+                List = new ObservableCollection<ReceptyForAllView>(List.Where(item => item.lekarzData.StartsWith(FindTextBox)));
+        }
     }
 }

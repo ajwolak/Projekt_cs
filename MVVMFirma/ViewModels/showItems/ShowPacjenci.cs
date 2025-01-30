@@ -8,6 +8,7 @@ using MVVMFirma.Helper;
 using System.Windows.Input;
 using MVVMFirma.Models.Entities;
 using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Models.EntitiesForView.showItems;
 
 namespace MVVMFirma.ViewModels.showItems
 {
@@ -39,6 +40,32 @@ namespace MVVMFirma.ViewModels.showItems
             List = new ObservableCollection<Pacjenci>(przychodniaEntities.Pacjenci.ToList());
         }
 
+
+        public override List<string> GetComboboxSortList()
+        {
+            return new List<string> { "Imię", "Nazwisko" };
+        }
+        public override List<string> GetComboboxFindList()
+        {
+            return new List<string> { "Imię", "Nazwisko" };
+        }
+
+        public override void Sort()
+        {
+            if (SortField == "Imię")
+                List = new ObservableCollection<Pacjenci>(List.OrderBy(x => x.Imie));
+            if (SortField == "Nazwisko")
+                List = new ObservableCollection<Pacjenci>(List.OrderBy(x => x.Nazwisko));
+        }
+
+        public override void Find()
+        {
+            if (FindField == "Imię")
+                List = new ObservableCollection<Pacjenci>(List.Where(item => item.Imie.StartsWith(FindTextBox)));
+            if (FindField == "Nazwisko")
+                List = new ObservableCollection<Pacjenci>(List.Where(item => item.Nazwisko.StartsWith(FindTextBox)));
+
+        }
 
     }
 }
