@@ -23,7 +23,7 @@
         <Button Content="..."  Grid.Row="0" Grid.Column="2" Margin="0,8,0,8" Command="{Binding ShowWizytaDane}"/>
         
         <Label Grid.Row="1" Grid.Column="0" Content="Kwota" Margin="0,8,0,8"></Label>
-        <TextBox  Grid.Row="1" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Kwota, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox  Grid.Row="1" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Kwota,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged }" />
 
         <Label Grid.Row="2" Grid.Column="0" Content="Data płatności" Margin="0,8,0,8"></Label>
         <DatePicker Grid.Row="2" Grid.Column="1" Margin="0,8,0,8" SelectedDate="{Binding Path=DataPlatnosci, UpdateSourceTrigger=PropertyChanged}" 

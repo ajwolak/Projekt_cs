@@ -16,8 +16,8 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Content="Nazwa choroby" Margin="0,8,0,8"></Label>
-        <TextBox  Grid.Row="0" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox  Grid.Row="0" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Nazwa, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         <Label Grid.Row="1" Grid.Column="0" Content="Opis choroby" Margin="0,8,0,8"></Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Opis, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Opis, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </addNewItem:OneViewBase>

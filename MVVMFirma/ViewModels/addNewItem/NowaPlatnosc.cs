@@ -10,6 +10,8 @@ using MVVMFirma.Models.businessLogic.dodawanieZKluczem;
 using MVVMFirma.Models.Entities;
 using MVVMFirma.Models.EntitiesForView.businessLogic;
 using MVVMFirma.Models.EntitiesForView.showItems;
+using System.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace MVVMFirma.ViewModels.addNewItem
 {
@@ -99,6 +101,18 @@ namespace MVVMFirma.ViewModels.addNewItem
         {
             WizytaID = item.wizytaId;
             WizytaDane = item.pacjentData + " - " + item.notatka;
+        }
+
+        public override string ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(Kwota):
+                    if (Kwota == null || Kwota == 0)
+                        return "Kwota musi być większa od 0";
+                    break;
+            }
+            return string.Empty;
         }
     }
 }

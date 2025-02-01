@@ -47,6 +47,21 @@ namespace MVVMFirma.ViewModels.addNewItem
             przychodniaEntities.SaveChanges();//zapisanie zmian do bazy 
         }
 
+        public override string ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(Nazwa):
+                    if (string.IsNullOrEmpty(Nazwa))
+                        return "Wpisz nazwę";
+                    break;
+                case nameof(Opis):
+                    if (string.IsNullOrEmpty(Opis))
+                        return "Wpisz opis";
+                    break;
+            }
+            return string.Empty;
+        }
 
     }
 }

@@ -74,5 +74,25 @@ namespace MVVMFirma.ViewModels.addNewItem
             przychodniaEntities.Pacjenci.Add(Item);
             przychodniaEntities.SaveChanges();
         }
+
+        public override string ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(Imie):
+                    if (string.IsNullOrEmpty(Imie))
+                        return "Wpisz imię";
+                    break;
+                case nameof(Nazwisko):
+                    if (string.IsNullOrEmpty(Nazwisko))
+                        return "Wpisz nazwisko";
+                    break;
+                case nameof(Pesel):
+                    if (string.IsNullOrEmpty(Pesel))
+                        return "Wpisz pesel";
+                    break;
+            }
+            return string.Empty;
+        }
     }
 }

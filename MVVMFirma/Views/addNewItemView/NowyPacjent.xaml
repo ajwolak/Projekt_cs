@@ -20,9 +20,9 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Content="Imie" Margin="0,8,0,8"></Label>
-        <TextBox  Grid.Row="0" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox  Grid.Row="0" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Imie, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         <Label Grid.Row="1" Grid.Column="0" Content="Nazwisko" Margin="0,8,0,8"></Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Nazwisko, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Data Urodzenia" Margin="0,8,0,8"></Label>
         <!-- ZAMIENIONE NA DatePicker -->
         <DatePicker Grid.Row="2" Grid.Column="1" Margin="0,8,0,8" 
@@ -30,7 +30,7 @@
                     DisplayDateStart="1900-01-01" 
                     DisplayDateEnd="2100-12-31" />
         <Label Grid.Row="3" Grid.Column="0" Content="Pesel" Margin="0,8,0,8"></Label>
-        <TextBox Grid.Row="3" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Pesel, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Pesel, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Telefon" Margin="0,8,0,8"></Label>
         <TextBox Grid.Row="4" Grid.Column="1" Margin="0,8,0,8" Text="{Binding Path=Telefon, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="5" Grid.Column="0" Content="Email" Margin="0,8,0,8"></Label>
